@@ -20,7 +20,7 @@ async function registerNewUser(req,res){
         async()=>{
             try {
                 const db = await mongo()
-                const user = await db.collection('users').findOne({email: req.body.email})
+                const user = await db.collection('users').findOne({ email: req.body.email })
                 if(user){
                     return res.status(409).json({
                         msg: 'El usuario con ese mail ya existe.',
