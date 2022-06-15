@@ -59,9 +59,9 @@
                 redirect: 'follow'
             };
 
-            fetch("http://localhost:3000/api/users/restorepass", requestOptions)
+            fetch("https://memokemon.herokuapp.com/api/users/restorepass", requestOptions)
                 .then(response => response.text())
-                .then(result => JSON.parse(result).code == 2 ? window.location.href = "http://localhost:3000/change-confirmed.html" : window.location.href = "http://localhost:3000/change-not-confirmed.html")
+                .then(result => JSON.parse(result).code == 2 ? window.location.href = "https://memokemon.herokuapp.com/change-confirmed.html" : window.location.href = "https://memokemon.herokuapp.com/change-not-confirmed.html")
                 .catch(error => console.log('error', error));
         }
     </script>

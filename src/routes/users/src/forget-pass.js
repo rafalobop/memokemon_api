@@ -32,7 +32,7 @@ async function forgetPass(req,res){
                     var emailSent = await emailManager.sendEmail(info, {
                         name: 'forgot.html',
                         param: [
-                            {key:'href',value:`http://localhost:3000/forgot-pass.html?token=${token}`},
+                            {key:'href',value:`https://memokemon.herokuapp.com/forgot-pass.html?token=${token}`},
                         ]
                     });
                     if(emailSent){
