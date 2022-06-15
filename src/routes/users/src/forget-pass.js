@@ -27,7 +27,7 @@ async function forgetPass(req,res){
                     let info = {
                         from: `"${process.env.SMTP_NICKNAME}" <${process.env.SMTP_USER}>`,
                         to: req.body.email,
-                        subject: "Memokemon - Reestablecer contraseña"
+                        subject: "Memokemon - Reestablecer contraseña",
                     };
                     var emailSent = await emailManager.sendEmail(info, {
                         name: 'forgot.html',

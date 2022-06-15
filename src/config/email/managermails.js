@@ -10,15 +10,18 @@ exp.sendEmail = async (objMail, template) => {
 
   try {
     var pathArray = [
-
+      "src",
+      "config",
       "email",
       "templatemail",
       template.name,
     ];
+
     var appDir =
       path.dirname(require.main.filename) +
       path.sep +
       path.relative(process.cwd(), path.join(...pathArray));
+
     html = fs.readFileSync(appDir, "utf8");
     for (let i = 0; i < template.param.length; i++) {
       while (html.indexOf("{{" + template.param[i].key + "}}") != -1) {
@@ -35,6 +38,7 @@ exp.sendEmail = async (objMail, template) => {
       html = html.replace("\r\n", "");
     }
   } catch (err) {
+    console.log('ERRR', err)
     html = "";
     for (let i = 0; i < template.length; i++) {
       html += "<br/>";
