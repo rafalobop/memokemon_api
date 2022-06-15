@@ -41,6 +41,7 @@ async function registerNewUser(req,res){
                     code: 2
                 })
             } catch (error) {
+                console.log('ERROR==>', error)
                 return res.status(500).json({
                     msg:'Hubo un error en el servidor, intente nuevamente.',
                     code: -1
