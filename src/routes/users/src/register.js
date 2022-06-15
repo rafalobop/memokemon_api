@@ -42,6 +42,7 @@ async function registerNewUser(req,res){
                 })
             } catch (error) {
                 console.log('ERROR==>', error)
+                console.log('processs', process.env.MONGO_URI)
                 return res.status(500).json({
                     msg:'Hubo un error en el servidor, intente nuevamente.',
                     code: -1
