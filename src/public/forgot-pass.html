@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Restablecer Contraseña</title>
+    <link rel="shortcut icon" href="img/logo_memokemon.png">
+    <script>
+        function check() {
+            if (document.getElementById('password').value.length < 5) {
+                document.getElementById('minimo').innerHTML = "La contraseña debe tener al menos 5 caracteres";
+                document.getElementById('message').innerHTML = "";
+                document.getElementById("send").disabled = true;
+            } else {
+                if (document.getElementById('password').value === document.getElementById('confirm_password').value) {
+                    document.getElementById('minimo').innerHTML = "";
+                    document.getElementById('message').innerHTML = "";
+                    document.getElementById('send').style.background = "#2372d9";
+                    document.getElementById('send').style.hoverBackground = "#ff6600";
+                    document.getElementById("send").disabled = false;
+                } else {
+                    document.getElementById('minimo').innerHTML = "";
+                    document.getElementById('message').innerHTML = "**Las contraseñas no coinciden";
+                    document.getElementById('send').style.background = "#ccc";
+                    document.getElementById("send").disabled = true;
+                }
+            }
+        }
+
+        function getParameterByName(t) {
+            var r = window.location.href;
+            console.log('rrrr', r)
+            t = t.replace(/[\[\]]/g, '\\$&');
+            var s = new RegExp('[?&]' + t + '(=([^&#]*)|&|#|$)')
+                , l = s.exec(r);
+            return l ? l[2] ? decodeURIComponent(l[2].replace(/\+/g, ' ')) : '' : null
+        };
+
+        function postData() {
+
+            let newPass = document.getElementById("password").value
+            let token = getParameterByName('token')
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                newPass,
+                token
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/api/users/restorepass", requestOptions)
+                .then(response => response.text())
+                .then(result => JSON.parse(result).code == 2 ? window.location.href = "http://localhost:3000/change-confirmed.html" : window.location.href = "http://localhost:3000/change-not-confirmed.html")
+                .catch(error => console.log('error', error));
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form class="form" id="form" action="javascript:postData()">
+            <h4>Restablecer Contraseña</h4>
+            <img class="img" src="img/logo_memokemon.png">
+            <input id="password" class="controls" type="password" name="pass" id="pass"
+                placeholder="Ingrese nueva contraseña" onkeyup="check()">
+            <span id="minimo" style="color:red; font-family: Ageo2; font-size: 12px; margin-bottom: 3px"></span>
+            <input id="confirm_password" class="controls" type="password" name="pass" id="pass"
+                placeholder="Repita su nueva contraseña" onkeyup="check()" />
+            <span id="message" style="color:red; font-family: Ageo2; font-size: 12px;"></span>
+            <input class="button" type="submit" name="send" id="send" disabled="true" />
+        </form>
+    </div>
+
+</body>
+
+</html>

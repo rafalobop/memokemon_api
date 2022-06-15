@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  @font-face {
+    font-family: "TheBoldFont";
+    src: url('fonts/TheBoldFont.ttf');
+  }
+  
+  @font-face {
+    font-family: "Ageo2";
+    src: url('fonts/Ageo2.ttf')
+  }
+  
+  body{
+    background: #ECECF5
+  }
+  
+  .clearfix{
+    clear:both;
+    float:none;
+  }
+  
+  .form {
+    width: 400px;
+    background :#fff;
+    padding: 30px;
+    border-radius: 15px;
+    font-family: 'calibri';
+    box-shadow: 7px 13px 37px rgb(77, 77, 77);
+    margin: 10% auto;       
+  }
+  
+  .form h4 {
+    margin-top: 15px;
+    font-size: 22px;
+    text-align: center;
+    font-family: 'TheBoldFont';
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #ff6600;
+  }
+  
+  .controls {
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: solid 1px #eee;
+    font-family: 'Ageo2';
+    font-size: 18px;
+    transition: 300ms;
+  }
+  
+  .controls:hover {
+    box-shadow: 0px 0px 8px rgb(173, 173, 173);
+  }
+  
+  .form p .confirmed {
+    font-size: 252px;
+  }
+  
+  .form p {
+    height: 390px;
+    font-size: 18px;
+    font-family: 'Ageo2';
+  
+  }
+  
+  #condicion {
+    height: 30px;
+    font-size: 14px;
+    font-family: 'Ageo2';
+    color: #ff0000
+  }
+  
+  .form .button {
+    width: 100%;
+    font-family: 'TheBoldFont';
+    letter-spacing: 2px;
+    background: #ccc;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    margin: 16px 0px;
+    font-size: 16px;
+    transition: 300ms;
+    border-radius: 40px;
+  }
+  
+  .form .button:hover {
+    background: #ccc;
+    box-shadow: 0px 0px 8px rgb(173, 173, 173);
+  }
+  
+  .form .button1 {
+    width: 100%;
+    font-family: 'TheBoldFont';
+    letter-spacing: 2px;
+    background: #2372d9;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    margin: 16px 0px;
+    font-size: 16px;
+    transition: 300ms;
+    border-radius: 40px;
+  }
+  
+  .form .button1:hover {
+    background: #ff6600;
+    box-shadow: 0px 0px 8px rgb(173, 173, 173);
+  }
+  
+  .form .img{
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: -9px;
+    margin-right: 10px;
+  }
+  
+  
+  
