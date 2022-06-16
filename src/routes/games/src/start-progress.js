@@ -18,7 +18,10 @@ async function startProgress(req,res){
                     code: 1
                 })
             }
-            const gameProgress = []
+            const gameProgress = {
+                scoreTotal: 0,
+                levelActual: 1
+            }
             await db.collection('users').updateOne({email: req.jwt.email}, {$set: {gameProgress}})
             return res.status(200).json({
                 msg:'Su progreso en el juego ha empezado. Se irá guardando automáticamente al avanzar de nivel.',
