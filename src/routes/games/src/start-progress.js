@@ -10,7 +10,7 @@ router.post('/', validaToken, startProgress)
 async function startProgress(req,res){
     try {
         const db = await mongo()
-        const user = await db.collection('users').findOne({email: req.jwt.email})
+        const user = await db.collection('users').findOne({email: req.jwt.email, active:true})
         if(user){
             if(user.gameProgress){
                 return res.status(200).json({
