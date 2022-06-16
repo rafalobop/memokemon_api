@@ -51,6 +51,7 @@
                 newPass,
                 token
             });
+            console.log('raw', raw)
 
             var requestOptions = {
                 method: 'POST',
@@ -59,9 +60,9 @@
                 redirect: 'follow'
             };
 
-            fetch("https://memokemon.herokuapp.com/api/users/restorepass", requestOptions)
-                .then(response => response.text())
-                .then(result => JSON.parse(result).code == 2 ? window.location.href = "https://memokemon.herokuapp.com/change-confirmed.html" : window.location.href = "https://memokemon.herokuapp.com/change-not-confirmed.html")
+            fetch("http://localhost:3000/api/users/restorepass", requestOptions)
+                .then(response => console.log('asas', response))
+                .then(result => console.log('result', result)/* JSON.parse(result).code == 2 ? console.log('result',result) : console.log('reassassult', result) */ /* window.location.href = "https://memokemon.herokuapp.com/change-confirmed.html" : window.location.href = "https://memokemon.herokuapp.com/change-not-confirmed.html" */)
                 .catch(error => console.log('error', error));
         }
     </script>

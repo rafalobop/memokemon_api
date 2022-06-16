@@ -32,7 +32,8 @@ async function registerNewUser(req,res){
                     name: req.body.name,
                     lastName: req.body.lastName,
                     email: req.body.email,
-                    password: hashPass
+                    password: hashPass,
+                    active: true
                 }
                 await db.collection('users').insertOne(userRegistered)
 
@@ -41,8 +42,7 @@ async function registerNewUser(req,res){
                     code: 2
                 })
             } catch (error) {
-                console.log('ERROR==>', error)
-                console.log('processs', process.env.MONGO_URI)
+   
                 return res.status(500).json({
                     msg:'Hubo un error en el servidor, intente nuevamente.',
                     code: -1

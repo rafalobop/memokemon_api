@@ -19,7 +19,6 @@ async function restorePass(req,res){
             try {
                 const db = await mongo()
                 const verify = await jwt.verify(req.body.token, process.env.KEY_PRELOGIN)
-                console.log('verify', verify)
                 
             } catch (error) {
                 return res.status(500).json({
