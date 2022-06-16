@@ -10,6 +10,12 @@ async function continueGame(req,res){
         const db = await mongo()
         const user = await db.collection('games').findOne({email: req.jwt.email})
         const level = user.games.length
+        if(level === 0){
+            return res.status(400).json({
+                msg:'No hay progreso iniciado en el juego. A jugar!',
+                code: 1
+            })
+        }
         return res.status(200).json({
             level
         })
