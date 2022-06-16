@@ -36,6 +36,14 @@ async function saveResult(req, res) {
                     } else {
                         gameObject.games.push(req.body)
                         await db.collection('games').updateOne({ email: req.jwt.email }, { $set: { games: gameObject.games } })
+                        const user = await db.collection('users').findOne({email: req.jwt.email})
+                        const newScore = user.gameProgress.scoreTotal += req.body.score
+                        const newLevel = req.body.level+=1
+                        const gameProgress = {
+                            scoreTotal: newScore,
+                            levelActual: newLevel
+                        }
+                        await db.collection('users').updateOne({email: req.jwt.email}, {$set:{gameProgress}})
                         res.status(200).json({
                             msg: 'Has completado exitosamente el nivel',
                             code: 2
