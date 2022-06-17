@@ -18,7 +18,7 @@ async function forgetPass(req,res){
         async () => {
             try {
                 const db = await mongo()
-                const user = db.collection('users').findOne({email: req.body.email})
+                const user = await db.collection('users').findOne({email: req.body.email})
                 if(user){
                     const token = jwt.sign({...req.body, password: user.password}, process.env.KEY_PRELOGIN)
 
@@ -37,18 +37,18 @@ async function forgetPass(req,res){
                     });
                     if(emailSent){
                         return res.status(200).json({
-                            message: 'Por favor, verifica tu correo para finalizar el reestablecimiento de contraseña',
+                            msg: 'Por favor, verifica tu correo para finalizar el reestablecimiento de contraseña',
                             code: 2,
                             token: token
                         });
                     }else{
                         return res.status(500).json({
-                            message: 'Hubo un error al enviar el correo, intente más tarde',
+                            msg: 'Hubo un error al enviar el correo, intente más tarde',
                             code: -1,
                         });
                     }
                 }else{
-                    return res.statu(404).json({
+                    return res.status(400).json({
                         msg: 'El usuario con ese email, no existe.',
                         code: 1
                     })

@@ -29,8 +29,16 @@ async function login(req, res) {
                             code: 1
                         })
                     }
+                    const userResp = {
+                        name: user.name,
+                        lastName: user.lastName,
+                        progress: user.gameProgress,
+                        email: user.email
+                    }
                     return res.header('auth-token', token).status(200).json({
                         msg: `Bienvenido ${user.name} ${user.lastName}!`,
+                        user:userResp,
+                        token,
                         code: 2
                     })
                 } else {
