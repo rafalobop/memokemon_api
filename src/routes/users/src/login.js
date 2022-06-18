@@ -29,11 +29,15 @@ async function login(req, res) {
                             code: 1
                         })
                     }
+                    const game = await db.collection('games').findOne({email: req.body.email})
+                    console.log('game', game)
                     const userResp = {
+                        id: user._id,
                         name: user.name,
                         lastName: user.lastName,
                         progress: user.gameProgress,
-                        email: user.email
+                        email: user.email,
+                        gamesId: game._id
                     }
                     return res.header('auth-token', token).status(200).json({
                         msg: `Bienvenido ${user.name} ${user.lastName}!`,
