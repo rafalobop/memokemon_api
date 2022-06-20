@@ -17,7 +17,8 @@ async function continueGame(req,res){
             })
         }
         return res.status(200).json({
-            level
+            level,
+            code: 2
         })
     } catch (error) {
         return res.status(500).json({
