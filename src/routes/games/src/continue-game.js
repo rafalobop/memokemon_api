@@ -16,7 +16,13 @@ async function continueGame(req,res){
             })
         }else{
             return res.status(200).json({
-                level: user.gameProgress.levelActual,
+                name: user.name,
+                lastName: user.lastName,
+                email: req.jwt.email,
+                progress:{
+                    levelActual: user.gameProgress.levelActual,
+                    scoreTotal: user.gameProgress.scoreTotal,
+                },
                 code: 2
             })
         }
